@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facebook Mobile Wireframe</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+background:#f0f2f5;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:10px;
+}
+
+/* RESPONSIVE SMARTPHONE WIREFRAME CONTAINER */
+.phone{
+width:100%;
+max-width:390px;
+height:92vh;
+max-height:840px;
+background:#fff;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 12px 28px rgba(0,0,0,0.15), 0 2px 4px rgba(0,0,0,0.1);
+display:flex;
+flex-direction:column;
+position:relative;
+}
+
+/* Fluid transformation for physical mobile web viewports */
+@media (max-width: 450px) {
+  body { padding: 0; background: #fff; }
+  .phone { max-width: 100%; height: 100vh; max-height: 100%; border-radius: 0; box-shadow: none; }
+}
+
+/* APP HEADER */
+.header{
+background:#1877f2;
+color:white;
+padding:12px 16px 6px;
+font-weight:bold;
+font-size:22px;
+letter-spacing:-0.5px;
+flex-shrink:0;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.header-icons {
+display:flex;
+gap:14px;
+font-size:16px;
+cursor:pointer;
+}
+
+/* FB TOP NAVIGATION TABS */
+.fb-tabs {
+display:flex;
+background:#1877f2;
+border-bottom:1px solid #3b5998;
+flex-shrink:0;
+}
+
+.fb-tab {
+flex:1;
+text-align:center;
+padding:10px 0;
+color:rgba(255, 255, 255, 0.6);
+font-weight:600;
+font-size:14px;
+cursor:pointer;
+user-select:none;
+transition: color 0.2s;
+}
+
+.fb-tab.active {
+color:#fff;
+border-bottom:3px solid #fff;
+}
+
+/* SCROLLABLE VIEWPORTS */
+.app-content {
+flex:1;
+overflow-y:auto;
+background:#f0f2f5;
+}
+
+.view-section {
+display:none;
+background:#fff;
+}
+
+.view-section.active {
+display:block;
+}
+
+/* FB HERO PROFILE ARCHITECTURE */
+.profile-container {
+background:#fff;
+padding-bottom:12px;
+border-bottom:1px solid #ced0d4;
+}
+
+.cover-wrapper {
+position:relative;
+width:100%;
+height:140px;
+background:#ccd0d5;
+}
+
+.cover{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.avatar-wrapper {
+position:absolute;
+bottom:-40px;
+left:16px;
+}
+
+.avatar{
+width:90px;
+height:90px;
+border-radius:50%;
+border:4px solid white;
+object-fit:cover;
+background:#fff;
+box-shadow:0 2px 4px rgba(0,0,0,0.1);
+}
+
+.profile-meta-block {
+margin-top:45px;
+padding:0 16px;
+}
+
+.name{
+font-size:22px;
+font-weight:800;
+color:#050505;
+}
+
+.sub-title {
+font-size:14px;
+color:#65676b;
+margin-top:2px;
+font-weight:500;
+}
+
+.bio{
+padding:12px 16px 4px;
+font-size:14px;
+color:#050505;
+line-height:1.4;
+}
+
+/* FB STRIP BUTTONS */
+.buttons{
+display:flex;
+gap:8px;
+padding:12px 16px;
+}
+
+.btn{
+flex:1;
+background:#e4e6eb;
+padding:8px 12px;
+text-align:center;
+border-radius:6px;
+font-weight:600;
+font-size:14px;
+color:#050505;
+cursor:pointer;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:6px;
+user-select:none;
+}
+
+.btn.primary {
+background:#1877f2;
+color:#fff;
+}
+
+/* PANEL RECURRING SECTIONS */
+.section{
+padding:16px;
+background:#fff;
+border-bottom:1px solid #ced0d4;
+margin-bottom:8px;
+}
+
+.section-title{
+font-weight:700;
+font-size:16px;
+margin-bottom:12px;
+color:#050505;
+}
+
+.card{
+background:#f0f2f5;
+padding:12px;
+border-radius:8px;
+margin-bottom:8px;
+font-size:13px;
+line-height:1.4;
+color:#050505;
+border:1px solid #e4e6eb;
+}
+
+.card:last-child { margin-bottom: 0; }
+
+/* FEED COMPONENT POST STYLING */
+.post{
+background:#fff;
+border-bottom:8px solid #f0f2f5;
+padding:12px 0 0 0;
+}
+
+.post-header{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:10px;
+padding:0 16px;
+}
+
+.post-avatar{
+width:38px;
+height:38px;
+border-radius:50%;
+object-fit:cover;
+background:#ccd0d5;
+}
+
+.post-meta {
+display:flex;
+flex-direction:column;
+}
+
+.post-name{
+font-weight:600;
+font-size:14px;
+color:#050505;
+cursor:pointer;
+}
+
+.post-name:hover { text-decoration:underline; }
+
+.post-time {
+font-size:12px;
+color:#65676b;
+}
+
+.post-text {
+font-size:14px;
+color:#050505;
+line-height:1.4;
+padding:0 16px 10px;
+}
+
+.post-img{
+width:100%;
+object-fit:cover;
+max-height:280px;
+background:#f0f2f5;
+}
+
+/* INTERACTION FEED COUNTER BAR */
+.post-stats-preview {
+display:flex;
+justify-content:space-between;
+padding:8px 16px;
+font-size:12px;
+color:#65676b;
+border-bottom:1px solid #e4e6eb;
+}
+
+.actions{
+display:flex;
+justify-content:space-around;
+padding:4px 0;
+color:#65676b;
+font-size:13px;
+font-weight:600;
+}
+
+.action-item {
+flex:1;
+text-align:center;
+padding:8px 0;
+cursor:pointer;
+border-radius:4px;
+user-select:none;
+}
+.action-item:hover { background:#f2f2f2; color:#050505; }
+
+/* WHAT'S ON YOUR MIND TOP FEED BOX */
+.create-post-box {
+background:#fff;
+padding:12px 16px;
+display:flex;
+align-items:center;
+gap:12px;
+border-bottom:8px solid #f0f2f5;
+}
+
+.mind-input {
+flex:1;
+background:#f0f2f5;
+padding:10px 16px;
+border-radius:20px;
+color:#65676b;
+font-size:14px;
+cursor:pointer;
+border:1px solid #e4e6eb;
+}
+</style>
+</head>
+<body>
+
+<div class="phone">
+
+  <div class="header">
+    <span>facebook</span>
+    <div class="header-icons">
+      <span>🔍</span>
+      <span>💬</span>
+    </div>
+  </div>
+
+  <div class="fb-tabs">
+    <div id="tab-home" class="fb-tab active" onclick="switchView('home')">🏠 For You</div>
+    <div id="tab-profile" class="fb-tab" onclick="switchView('profile')">👤 Profile</div>
+  </div>
+
+  <div class="app-content">
+
+    <div id="view-home" class="view-section active">
+      
+      
+
+ 
+<div id="view-home" class="view-section active">
+  
+
+
+ 
+  <!-- AD 1 -->
+  <div class="post">
+    <div class="post-header">
+      <img class="post-avatar" src="https://randomuser.me/api/portraits/women/32.jpg" alt="Ad Avatar">
+      <div class="post-meta">
+        <div class="post-name">StyleHub Store</div>
+        <div class="post-time">Sponsored · 🌐</div>
+      </div>
+    </div>
+    <div class="post-text">New seasonal dresses just dropped 👗✨ Limited offer!</div>
+    <img class="post-img" src="https://images.unsplash.com/photo-1520975916090-3105956dac38?w=500" alt="Ad Fashion">
+  </div>
+
+  <!-- AD 2 -->
+  <div class="post">
+    <div class="post-header">
+      <img class="post-avatar" src="https://randomuser.me/api/portraits/men/45.jpg" alt="Ad Avatar">
+      <div class="post-meta">
+        <div class="post-name">BookNest App</div>
+        <div class="post-time">Sponsored · 🌐</div>
+      </div>
+    </div>
+    <div class="post-text">Read 10,000+ books anytime 📚 Start your free trial today.</div>
+    <img class="post-img" src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=500" alt="Book Ad">
+  </div>
+
+  <!-- AD 3 -->
+  <div class="post">
+    <div class="post-header">
+      <img class="post-avatar" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ad Avatar">
+      <div class="post-meta">
+        <div class="post-name">NatureGlow Travel</div>
+        <div class="post-time">Sponsored · 🌐</div>
+      </div>
+    </div>
+    <div class="post-text">Explore peaceful nature escapes 🌿 Book your getaway now.</div>
+    <img class="post-img" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500" alt="Travel Ad">
+  </div>
+
+</div>
+
+
+
+
+    </div>
+
+    <div id="view-profile" class="view-section">
+      
+      <div class="profile-container">
+        <div class="cover-wrapper">
+          <img class="cover" src="cover.jpg" alt="Cover background">
+          <div class="avatar-wrapper">
+            <img class="avatar" src="avatar.jpg" alt="Profile picture">
+          </div>
+        </div>
+
+        <div class="profile-meta-block">
+          <div class="name">Ayesha Khan</div>
+          <div class="sub-title">Home Maker • Lifestyle Creator</div>
+        </div>
+
+        <div class="bio">
+          Sharing everyday life, creativity, and calm living 🌸<br>
+          <strong>Fashion • Books • Nature</strong>
+        </div>
+
+        <div class="buttons">
+          <div class="btn primary">👤 Add Friend</div>
+          <div class="btn">✉️ Message</div>
+          <div class="btn">•••</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Interests</div>
+        <div class="card">
+           Lorraine 👗 <strong>Fashion Fan</strong><br>
+          <span style="color:#65676b;">Posts outfit ideas, shopping finds, and style inspiration.</span>
+        </div>
+        <div class="card">
+          📚 <strong>Book Reader</strong><br>
+          <span style="color:#65676b;">Shares book reviews and reading habits. Encourages others to read more.</span>
+        </div>
+      </div>
+<div class="create-post-box">
+        <img class="post-avatar" src="avatar.jpg" alt="Your Avatar">
+        <div class="mind-input">What's on your mind?</div>
+      </div>
+      <div class="post">
+        <div class="post-header">
+          <img class="post-avatar" src="avatar.jpg" alt="Avatar">
+          <div class="post-meta">
+            <div class="post-name">Ayesha Khan</div>
+            <div class="post-time">Yesterday · 🌐</div>
+          </div>
+        </div>
+        <div class="post-text">New Book Store ARound the corner 🌿</div>
+        <img class="post-img" src="book.jpg" alt="Nature Post">
+        <div class="post-stats-preview">
+          <span>👍 ❤️ 89</span>
+          <span>12 comments</span>
+        </div>
+        <div class="actions">
+          <div class="action-item">👍 Like</div>
+          <div class="action-item">💬 Comment</div>
+          <div class="action-item">↗️ Share</div>
+        </div>
+      </div>
+
+
+
+
+
+      <div class="post">
+        <div class="post-header">
+          <img class="post-avatar" src="avatar.jpg" alt="Avatar">
+          <div class="post-meta">
+            <div class="post-name">Ayesha Khan</div>
+            <div class="post-time">Yesterday · 🌐</div>
+          </div>
+        </div>
+        <div class="post-text">Recipe for apple pie</div>
+        <img class="post-img" src="apple.jpg" alt="Nature Post">
+        <div class="post-stats-preview">
+          <span>👍 ❤️ 89</span>
+          <span>12 comments</span>
+        </div>
+        <div class="actions">
+          <div class="action-item">👍 Like</div>
+          <div class="action-item">💬 Comment</div>
+          <div class="action-item">↗️ Share</div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <div class="post">
+        <div class="post-header">
+          <img class="post-avatar" src="avatar.jpg" alt="Avatar">
+          <div class="post-meta">
+            <div class="post-name">Ayesha Khan</div>
+            <div class="post-time">Yesterday · 🌐</div>
+          </div>
+        </div>
+        <div class="post-text">Peaceful nature walk 🌿</div>
+        <img class="post-img" src="nature.jpg" alt="Nature Post">
+        <div class="post-stats-preview">
+          <span>👍 ❤️ 89</span>
+          <span>12 comments</span>
+        </div>
+        <div class="actions">
+          <div class="action-item">👍 Like</div>
+          <div class="action-item">💬 Comment</div>
+          <div class="action-item">↗️ Share</div>
+        </div>
+      </div>
+
+
+
+
+
+      <div class="post">
+        <div class="post-header">
+          <img class="post-avatar" src="avatar.jpg" alt="Avatar">
+          <div class="post-meta">
+            <div class="post-name">Ayesha Khan</div>
+            <div class="post-time">Yesterday · 🌐</div>
+          </div>
+        </div>
+        <div class="post-text">Kitchn tour🥣🍽️🍽️</div>
+        <img class="post-img" src="Kitchen.jpg" alt="Nature Post">
+        <div class="post-stats-preview">
+          <span>👍 ❤️ 89</span>
+          <span>12 comments</span>
+        </div>
+        <div class="actions">
+          <div class="action-item">👍 Like</div>
+          <div class="action-item">💬 Comment</div>
+          <div class="action-item">↗️ Share</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function switchView(viewName) {
+  // Clear layout views out
+  document.getElementById('view-home').classList.remove('active');
+  document.getElementById('view-profile').classList.remove('active');
+  
+  // Untoggle active class highlights from top navigational indicators
+  document.getElementById('tab-home').classList.remove('active');
+  document.getElementById('tab-profile').classList.remove('active');
+
+  // Activate chosen context view targeting id selectors
+  if(viewName === 'home') {
+    document.getElementById('view-home').classList.add('active');
+    document.getElementById('tab-home').classList.add('active');
+  } else if(viewName === 'profile') {
+    document.getElementById('view-profile').classList.add('active');
+    document.getElementById('tab-profile').classList.add('active');
+  }
+}
+</script>
+</body>
+</html>
