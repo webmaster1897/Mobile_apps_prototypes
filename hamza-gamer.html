@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facebook Mobile Wireframe</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#1e222b;padding:20px;display:flex;justify-content:center}
+.phone-shell{width:390px;max-width:100%;height:800px;background:#fff;border:12px solid #2f3542;border-radius:40px;overflow:hidden;display:flex;flex-direction:column}
+.status-bar{height:24px;padding:0 20px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:bold}
+.fb-header{display:flex;gap:10px;align-items:center;padding:10px 15px;border-bottom:1px solid #ddd}
+.search-box{flex:1;background:#f0f2f5;height:32px;border-radius:20px;display:flex;align-items:center;padding-left:15px}
+.app-tabs{display:flex;border-bottom:1px solid #ddd}
+.tab{flex:1;text-align:center;padding:12px;font-weight:bold;cursor:pointer}
+.tab.active{color:#1877f2;border-bottom:3px solid #1877f2}
+.app-content{flex:1;overflow:auto;background:#f0f2f5}
+.view-section{display:none}
+.view-section.active{display:block}
+
+.cover-image{width:100%;height:180px;object-fit:cover;display:block}
+.avatar-container{margin-top:-60px;padding:0 15px}
+.avatar-image{width:110px;height:110px;border-radius:50%;border:4px solid #fff;object-fit:cover;display:block}
+.small-avatar{width:36px;height:36px;border-radius:50%;object-fit:cover}
+.post-image{width:100%;height:210px;object-fit:cover;display:block}
+
+.profile-details,.info-card,.post-card,.action-strip{background:#fff}
+.profile-details{padding:15px}
+.profile-name{font-size:24px;font-weight:bold}
+.profile-handle{color:#666;margin:5px 0}
+.profile-bio{background:#f0f2f5;padding:8px;border-radius:6px;font-size:13px}
+.action-strip{display:flex;gap:8px;padding:12px 15px;border-bottom:8px solid #f0f2f5}
+.btn{flex:1;padding:10px;text-align:center;border-radius:6px;font-weight:bold}
+.btn-blue{background:#1877f2;color:#fff}
+.btn-gray{background:#e4e6eb}
+.info-card{padding:15px;display:flex;flex-direction:column;gap:10px;border-bottom:8px solid #f0f2f5}
+.post-card{margin-bottom:8px;padding-top:12px}
+.post-header{display:flex;gap:10px;padding:0 12px 10px}
+.post-text{padding:0 12px 10px}
+.post-time{font-size:11px;color:#666}
+.ad-badge{background:#f0f2f5;padding:2px 6px;border-radius:4px;font-size:10px}
+
+/* Reaction Styles */
+.react-container { position: relative; display: flex; align-items: center; padding: 8px 12px; }
+.react-btn { flex: 1; text-align: center; padding: 8px; background: none; border: none; cursor: pointer; font-weight: bold; color: #65676b; }
+.emoji-picker { display: none; position: absolute; bottom: 40px; left: 10px; background: white; border-radius: 20px; padding: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.2); gap: 5px; z-index: 10; }
+.react-container:hover .emoji-picker { display: flex; }
+.emoji-picker span { cursor: pointer; font-size: 20px; padding: 2px; transition: transform 0.1s; }
+.emoji-picker span:hover { transform: scale(1.3); }
+</style>
+</head>
+<body>
+<div class="phone-shell">
+<div class="status-bar"><span>11:02 PM</span><span>📶 🔋 98%</span></div>
+
+<div class="fb-header">
+<div>←</div>
+<div class="search-box">Search "how to make money online"</div>
+</div>
+
+<div class="app-tabs">
+<div id="tab-profile" class="tab active" onclick="switchTab('profile')">Profile</div>
+<div id="tab-feed" class="tab" onclick="switchTab('feed')">For You Feed</div>
+</div>
+
+<div class="app-content">
+
+<div id="view-profile" class="view-section active">
+<img src="cover.jpg" class="cover-image" alt="Cover">
+<div class="avatar-container"><img src="avatar.jpg" class="avatar-image" alt="Avatar"></div>
+<div class="profile-details">
+<div class="profile-name">Hamza Esports</div>
+<div class="profile-handle">Competitive Gamer</div>
+<div class="profile-bio">👑 Grinding to the top. Esports player. I love high frames and big wins. Future millionaire. ⚡🚀</div>
+</div>
+<div class="action-strip">
+<div class="btn btn-blue">+ Add to Story</div>
+<div class="btn btn-gray">Edit Profile</div>
+</div>
+<div class="info-card">
+<div>📍 Lives in <b>Faisalabad, Pakistan</b></div>
+<div>🎮 Member of <b>Pakistan Esports Association</b></div>
+<div>👥 Joined: <b>PC Builders Community PK</b></div>
+</div>
+<div class="post-card">
+<div class="post-header"><img src="avatar.jpg" class="small-avatar"><div><strong>Hamza Esports</strong><div class="post-time">1 hr ago</div></div></div>
+<p class="post-text">Took 1st place in the gaming tournament tonight!</p>
+<img src="h2.jpg" class="post-image">
+</div>
+<div class="post-card">
+<div class="post-header"><img src="avatar.jpg" class="small-avatar"><div><strong>Hamza Esports</strong><div class="post-time">Yesterday</div></div></div>
+<p class="post-text">Got a new gaming headset today!</p>
+<img src="h1.jpg" class="post-image">
+</div>
+<div class="post-card">
+<div class="post-header"><img src="photo.jpg" class="small-avatar"><div><strong>Hamza Esports</strong><div class="post-time">3 days ago</div></div></div>
+<p class="post-text">Check out this full squad wipe from our match.</p>
+<img src="h3.jpg" class="post-image">
+</div>
+</div>
+
+<div id="view-feed" class="view-section">
+<div class="post-card">
+<div class="post-header"><img src="h2.jpg" class="small-avatar"><div><strong>Millionaire Lifestyle</strong></div></div>
+<p class="post-text">Start making money online today.</p>
+<img src="h2.jpg" class="post-image">
+<div class="react-container">
+    <span id="emoji-1">👍</span>
+    <button class="react-btn">Like</button>
+    <div class="emoji-picker">
+        <span onclick="setReaction('emoji-1', '👍')">👍</span>
+        <span onclick="setReaction('emoji-1', '❤️')">❤️</span>
+        <span onclick="setReaction('emoji-1', '😂')">😂</span>
+        <span onclick="setReaction('emoji-1', '😡')">😡</span>
+    </div>
+</div>
+</div>
+
+<div class="post-card">
+<div class="post-header"><img src="l1.jpg" class="small-avatar"><div><strong>ASUS Pakistan</strong> <span class="ad-badge">Sponsored</span></div></div>
+<img src="l1.jpg" class="post-image">
+<div class="react-container">
+    <span id="emoji-2">❤️</span>
+    <button class="react-btn">Like</button>
+    <div class="emoji-picker">
+        <span onclick="setReaction('emoji-2', '👍')">👍</span>
+        <span onclick="setReaction('emoji-2', '❤️')">❤️</span>
+        <span onclick="setReaction('emoji-2', '😂')">😂</span>
+        <span onclick="setReaction('emoji-2', '😡')">😡</span>
+    </div>
+</div>
+</div>
+
+<div class="post-card">
+<img src="h4.jpg" class="post-image">
+<div class="react-container">
+    <span id="emoji-3"></span>
+    <button class="react-btn">Like</button>
+    <div class="emoji-picker">
+        <span onclick="setReaction('emoji-3', '👍')">👍</span>
+        <span onclick="setReaction('emoji-3', '❤️')">❤️</span>
+        <span onclick="setReaction('emoji-3', '😂')">😂</span>
+        <span onclick="setReaction('emoji-3', '😡')">😡</span>
+    </div>
+</div>
+</div>
+
+<div class="post-card">
+<div class="post-header"><img src="l2.jpg" class="small-avatar"><div><strong>X-Fuel Energy</strong> <span class="ad-badge">Sponsored</span></div></div>
+<img src="l2.jpg" class="post-image">
+<div class="react-container">
+    <span id="emoji-4"></span>
+    <button class="react-btn">Like</button>
+    <div class="emoji-picker">
+        <span onclick="setReaction('emoji-4', '👍')">👍</span>
+        <span onclick="setReaction('emoji-4', '❤️')">❤️</span>
+        <span onclick="setReaction('emoji-4', '😂')">😂</span>
+        <span onclick="setReaction('emoji-4', '😡')">😡</span>
+    </div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<script>
+function switchTab(viewName){
+document.getElementById('view-profile').classList.remove('active');
+document.getElementById('view-feed').classList.remove('active');
+document.getElementById('tab-profile').classList.remove('active');
+document.getElementById('tab-feed').classList.remove('active');
+
+if(viewName==='profile'){
+document.getElementById('view-profile').classList.add('active');
+document.getElementById('tab-profile').classList.add('active');
+}else{
+document.getElementById('view-feed').classList.add('active');
+document.getElementById('tab-feed').classList.add('active');
+}
+}
+
+function setReaction(id, emoji) {
+    document.getElementById(id).innerText = emoji;
+}
+</script>
+</body>
+</html>
