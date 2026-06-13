@@ -1,0 +1,344 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Wireframe - Aisha</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;background:#11141a;padding:20px;display:flex;justify-content:center;align-items:center;min-height:100vh}
+.phone-shell{width:390px;max-width:100%;height:820px;background:#fff;border:12px solid #2c3e50;border-radius:40px;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 12px 40px rgba(0,0,0,0.6)}
+.status-bar{height:30px;padding:0 24px;display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600;background:#fff;color:#000;flex-shrink:0}
+
+/* Top App Bar Headers */
+.ig-header{display:flex;justify-content:space-between;align-items:center;padding:10px 15px;border-bottom:1px solid #e6e6e6;background:#fff;flex-shrink:0}
+.ig-logo{font-size:22px;font-weight:bold;font-style:italic;font-family:'Georgia', serif;letter-spacing:-0.5px}
+.header-icons{display:flex;gap:18px;font-size:18px;cursor:pointer}
+
+/* Feed Selector Tabs (For You / Following) */
+.feed-toggle-bar{display:flex;justify-content:center;border-bottom:1px solid #e6e6e6;background:#fff;padding:8px 0;gap:30px}
+.feed-toggle-item{font-size:13px;font-weight:600;color:#747d8c;cursor:pointer;padding-bottom:4px;border-bottom:2px solid transparent}
+.feed-toggle-item.active{color:#000;border-bottom-color:#000}
+
+.explore-header{display:none;padding:10px 15px;background:#fff;border-bottom:1px solid #e6e6e6;flex-shrink:0}
+.explore-header.active{display:block}
+.search-bar{width:100%;background:#f1f2f6;border:none;padding:8px 12px 8px 35px;border-radius:10px;font-size:14px}
+.search-wrapper{position:relative}
+.search-icon{position:absolute;left:12px;top:8px;color:#747d8c}
+
+/* Content View Ports */
+.app-content{flex:1;overflow-y:auto;background:#fff;padding-bottom:60px}
+.view-section{display:none}
+.view-section.active{display:block}
+
+/* Cover Page and Banner Enhancements */
+.profile-cover-wrapper {width:100%;height:135px;position:relative;background:#f1f2f6;overflow:hidden}
+.profile-cover-img {width:100%;height:100%;object-fit:cover}
+
+/* Profile Section Layout Update */
+.profile-top{padding:0 15px 12px;display:flex;align-items:flex-end;gap:15px;position:relative;margin-top:-45px;z-index:5}
+.avatar-gradient{width:90px;height:90px;border-radius:50%;background:linear-gradient(45deg, #f9ca24, #f53b57, #6c5ce7);padding:3px;display:flex;align-items:center;justify-content:center;box-shadow:0px 3px 10px rgba(0,0,0,0.15)}
+.avatar-image{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid #fff}
+.profile-stats{display:flex;gap:10px;flex:1;justify-content:space-around;text-align:center;background:#fff;padding:8px;border-radius:12px;margin-bottom:2px}
+.stat-num{font-weight:700;font-size:16px;color:#2c3e50}
+.stat-label{font-size:12px;color:#747d8c}
+
+.profile-bio-section{padding:5px 18px 15px;font-size:13px;line-height:1.5;color:#2c3e50}
+.profile-name{font-weight:700;font-size:16px;margin-bottom:2px}
+.profile-category{color:#747d8c;font-size:12px;margin-bottom:6px}
+.action-strip{display:flex;gap:8px;padding:0 15px 15px}
+.btn{flex:1;padding:8px;text-align:center;border-radius:8px;font-weight:600;font-size:13px;background:#f1f2f6;color:#2c3e50;cursor:pointer;border:1px solid transparent}
+
+.profile-tabs{display:flex;border-top:1px solid #e6e6e6;border-bottom:1px solid #e6e6e6}
+.profile-tab{flex:1;text-align:center;padding:12px;font-size:13px;cursor:pointer;color:#747d8c;font-weight:500}
+.profile-tab.active{color:#000;border-bottom:2px solid #000;font-weight:700}
+
+/* Grid Block Layout */
+.photo-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:3px;padding:3px}
+.grid-square{width:100%;aspect-ratio:1/1;background:#f1f2f6;position:relative;cursor:pointer;display:flex;overflow:hidden}
+.grid-square img{width:100%;height:100%;object-fit:cover}
+.grid-icon{position:absolute;top:6px;right:6px;font-size:14px;z-index:2;filter:drop-shadow(0px 1px 2px rgba(0,0,0,0.6))}
+
+/* Dynamic Post Component */
+.post-card{border-bottom:1px solid #e6e6e6;padding-bottom:15px}
+.post-header{display:flex;align-items:center;padding:12px;gap:10px}
+.small-avatar-ring{width:38px;height:38px;border-radius:50%;background:linear-gradient(45deg, #f9ca24, #f53b57);padding:2px;display:flex;align-items:center;justify-content:center}
+.small-avatar-img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:1px solid #fff}
+.post-user-info{flex:1}
+.user-name{font-size:13px;font-weight:600;color:#2c3e50}
+.post-location{font-size:11px;color:#747d8c}
+.post-image-wrap{width:100%;aspect-ratio:1/1;background:#f5f6fa;display:flex;position:relative}
+.post-image-wrap img{width:100%;height:100%;object-fit:cover}
+
+.post-actions{display:flex;gap:16px;padding:12px;font-size:20px;color:#2c3e50}
+.action-icon{cursor:pointer;display:inline-flex;align-items:center}
+.like-counter{font-size:13px;font-weight:700;padding:0 12px 4px;color:#2c3e50}
+.caption-box{padding:0 12px;font-size:13px;line-height:1.45;color:#2c3e50}
+.caption-user{font-weight:700;margin-right:6px}
+.post-time{font-size:10px;color:#95a5a6;margin-top:6px;text-transform:uppercase}
+.heart-indicator{color:#ff4757;display:none;margin-right:2px}
+.heart-indicator.active{display:inline}
+
+/* Navigation Base Sticky Bar */
+.bottom-nav{position:absolute;bottom:0;left:0;width:100%;height:55px;background:#fff;border-top:1px solid #e6e6e6;display:flex;justify-content:space-around;align-items:center;font-size:22px;z-index:20}
+.nav-item{cursor:pointer;opacity:0.35;transition:opacity 0.2s}
+.nav-item.active{opacity:1}
+</style>
+</head>
+<body>
+
+<div class="phone-shell">
+  <div class="status-bar"><span>3:23 PM</span><span>📶 🔋 98%</span></div>
+
+  <div id="main-header" class="ig-header">
+    <div class="ig-logo">Instagram</div>
+    <div class="header-icons"><span>❤️</span><span>📥</span></div>
+  </div>
+
+  <div id="search-header" class="explore-header">
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-bar" placeholder="Search accounts, hashtags, tags...">
+    </div>
+  </div>
+
+  <div class="app-content">
+    <!-- AISHA'S COVER PAGE BANNER AND AVATAR SECTION -->
+
+
+
+
+
+
+
+
+
+    <div id="view-home" class="view-section active">
+      
+      <div class="feed-toggle-bar">
+        <div class="feed-toggle-item active">✨ For You</div>
+        <div class="feed-toggle-item">👥 Following</div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-header">
+          <div class="small-avatar-ring">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=60" class="small-avatar-img" alt="Aisha Profile">
+          </div>
+          <div class="post-user-info">
+            <div class="user-name">aisha_botanica</div>
+            <div class="post-location">University Lab Room 4B</div>
+          </div>
+          <div style="cursor:pointer; font-weight:bold; color: #747d8c;">•••</div>
+        </div>
+        <div class="post-image-wrap">
+          <img src="https://images.unsplash.com/photo-1545239351-ef35f43d514b?w=500&auto=format&fit=crop&q=80" alt="Lab Plant Experiments">
+        </div>
+        <div class="post-actions">
+          <div class="action-icon" onclick="toggleLikeNode('like-home-1', 'count-home-1')">
+            <span id="like-home-1" class="heart-indicator">❤️</span>🤍
+          </div>
+          <div class="action-icon">💬</div>
+          <div class="action-icon">✈️</div>
+        </div>
+        <div class="like-counter"><span id="count-home-1">342</span> likes</div>
+        <div class="caption-box">
+          <p><span class="caption-user">aisha_botanica</span>Me: *chooses botany because plants are quiet and don't talk back* <br><br>The plants: *refuse to grow under lab conditions, instantly ruining my graduate tracking data* 💀 cool cool cool perfectly fine.</p>
+          <div class="post-time">14 minutes ago</div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-header">
+          <div class="small-avatar-ring">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=60" class="small-avatar-img" alt="Aisha Profile">
+          </div>
+          <div class="post-user-info">
+            <div class="user-name">aisha_botanica</div>
+            <div class="post-location">Stationery Shop / Safe Haven</div>
+          </div>
+          <div style="cursor:pointer; font-weight:bold; color: #747d8c;">•••</div>
+        </div>
+        <div class="post-image-wrap">
+          <img src="https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=500&auto=format&fit=crop&q=80" alt="Cute Stickers Haul">
+        </div>
+        <div class="post-actions">
+          <div class="action-icon" onclick="toggleLikeNode('like-home-2', 'count-home-2')">
+            <span id="like-home-2" class="heart-indicator">❤️</span>🤍
+          </div>
+          <div class="action-icon">💬</div>
+          <div class="action-icon">✈️</div>
+        </div>
+        <div class="like-counter"><span id="count-home-2">511</span> likes</div>
+        <div class="caption-box">
+          <p><span class="caption-user">aisha_botanica</span>Thinking to start writing my pending assignments Day 50/ 120 Pray for me!🤷‍♀️🦭.</p>
+          <div class="post-time">2 hours ago</div>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <div class="post-header">
+          <div class="small-avatar-ring">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=60" class="small-avatar-img" alt="Aisha Profile">
+          </div>
+          <div class="post-user-info">
+            <div class="user-name">aisha_botanica</div>
+            <div class="post-location">Flight Deal Booking Window</div>
+          </div>
+          <div style="cursor:pointer; font-weight:bold; color: #747d8c;">•••</div>
+        </div>
+        <div class="post-image-wrap">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&auto=format&fit=crop&q=80" alt="Sunny Island Beach Daydreams">
+        </div>
+        <div class="post-actions">
+          <div class="action-icon" onclick="toggleLikeNode('like-home-3', 'count-home-3')">
+            <span id="like-home-3" class="heart-indicator">❤️</span>🤍
+          </div>
+          <div class="action-icon">💬</div>
+          <div class="action-icon">✈️</div>
+        </div>
+        <div class="like-counter"><span id="count-home-3">621</span> likes</div>
+        <div class="caption-box">
+          <p><span class="caption-user">aisha_botanica</span>Currently browsing 14-hour to karachi to study aquatic life.🪼🪸🐠</p>
+          <div class="post-time">5 hours ago</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="view-explore" class="view-section">
+      <div class="photo-grid">
+        <div class="grid-square" onclick="switchActiveView('home')">
+          <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=250&auto=format&fit=crop&q=80" alt="Nature Doc Preview">
+          <span class="grid-icon">🎬</span>
+        </div>
+        <div class="grid-square" onclick="switchActiveView('home')">
+          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=250&auto=format&fit=crop&q=80" alt="Kitten with Plants">
+          <span class="grid-icon">✨</span>
+        </div>
+        <div class="grid-square" onclick="switchActiveView('home')">
+          <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=250&auto=format&fit=crop&q=80" alt="Travel map and baggage">
+          <span class="grid-icon">👥</span>
+        </div>
+        <div class="grid-square" onclick="switchActiveView('home')">
+          <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=250&auto=format&fit=crop&q=80" alt="Scrapbook and Journals">
+          <span class="grid-icon">📸</span>
+        </div>
+        <div class="grid-square" onclick="switchActiveView('home')">
+          <img src="https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=250&auto=format&fit=crop&q=80" alt="Rare Succulents shop">
+          <span class="grid-icon">🛒</span>
+        </div>
+        <div class="grid-square" onclick="switchActiveView('home')">
+          <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=250&auto=format&fit=crop&q=80" alt="Cute lazy cat">
+          <span class="grid-icon">🎬</span>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div id="view-profile" class="view-section">
+      <div class="profile-cover-wrapper">
+        <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=500&auto=format&fit=crop&q=80" class="profile-cover-img" alt="Profile Cover Landscape Banner">
+      </div>
+
+      <div class="profile-top">
+        <div class="avatar-gradient">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=60" class="avatar-image" alt="Aisha Avatar Profile">
+        </div>
+        <div class="profile-stats">
+          <div><div class="stat-num">92</div><div class="stat-label">posts</div></div>
+          <div><div class="stat-num">1.8k</div><div class="stat-label">followers</div></div>
+          <div><div class="stat-num">714</div><div class="stat-label">following</div></div>
+        </div>
+      </div>
+      
+      <div class="profile-bio-section">
+        <div class="profile-name">Aisha</div>
+        <div class="profile-category">Science student / Part-time Explorer</div>
+        <div>Soon-to-be Botanist trying not to kill my own house plants 🧪🌱 <br>Dog & Cat enthusiast 🐾 | Daydreaming about global flights ✈️ <br>My laptop is 80% aesthetic sticker decals at this point. 📓✨</div>
+      </div>
+
+      <div class="action-strip">
+        <div class="btn">Edit Profile</div>
+        <div class="btn">Archive</div>
+      </div>
+
+      <div class="profile-tabs">
+        <div class="profile-tab active">⚃ Posts</div>
+        <div class="profile-tab">🔖 Saved Entries</div>
+      </div>
+
+      <div class="photo-grid">
+        <div class="grid-square"><img src="https://images.unsplash.com/photo-1545239351-ef35f43d514b?w=250&auto=format&fit=crop&q=80" alt="Lab Image"></div>
+        <div class="grid-square"><img src="https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=250&auto=format&fit=crop&q=80" alt="Stickers Image"></div>
+        <div class="grid-square"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=250&auto=format&fit=crop&q=80" alt="Beach Travel Escape"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bottom-nav">
+    <span id="nav-home" class="nav-item active" onclick="switchActiveView('home')">🏠</span>
+    <span id="nav-explore" class="nav-item" onclick="switchActiveView('explore')">🔍</span>
+    <span class="nav-item">📷</span>
+    <span class="nav-item">🎬</span>
+    <span id="nav-profile" class="nav-item" onclick="switchActiveView('profile')">👤</span>
+  </div>
+</div>
+
+<script>
+function switchActiveView(viewName){
+  // Hide all screens
+  document.getElementById('view-home').classList.remove('active');
+  document.getElementById('view-explore').classList.remove('active');
+  document.getElementById('view-profile').classList.remove('active');
+  
+
+
+  // Reset navigation layout top bars
+  document.getElementById('main-header').style.display = 'flex';
+  document.getElementById('search-header').classList.remove('active');
+
+  // De-energize nav button highlights
+  document.getElementById('nav-home').classList.remove('active');
+  document.getElementById('nav-explore').classList.remove('active');
+  document.getElementById('nav-profile').classList.remove('active');
+ 
+  // Activate selected views
+  if(viewName === 'home') {
+    document.getElementById('view-home').classList.add('active');
+    document.getElementById('nav-home').classList.add('active');
+
+  } else if (viewName === 'explore') {
+    document.getElementById('view-explore').classList.add('active');
+    document.getElementById('nav-explore').classList.add('active');
+    document.getElementById('main-header').style.display = 'none';
+    document.getElementById('search-header').classList.add('active');
+  } else if (viewName === 'profile') {
+    document.getElementById('view-profile').classList.add('active');
+    document.getElementById('nav-profile').classList.add('active');
+  }
+}
+
+function toggleLikeNode(heartId, counterId) {
+  var heart = document.getElementById(heartId);
+  var counter = document.getElementById(counterId);
+  var val = parseInt(counter.innerText);
+  
+  if(heart.classList.contains('active')) {
+    heart.classList.remove('active');
+    counter.innerText = val - 1;
+  } else {
+    heart.classList.add('active');
+    counter.innerText = val + 1;
+  }
+}
+</script>
+</body>
+</html>
