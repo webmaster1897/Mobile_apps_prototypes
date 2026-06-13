@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Mobile Wireframe</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e222b;
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Phone Container Layout */
+        .phone-shell {
+            width: 100%;
+            max-width: 390px;
+            height: 800px;
+            background: #ffffff;
+            border: 12px solid #2f3542;
+            border-radius: 40px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        /* Top Bar */
+        .status-bar {
+            height: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 11px;
+            font-weight: bold;
+            background: #ffffff;
+        }
+
+        /* Header & Search */
+        .fb-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .search-box {
+            flex: 1;
+            background: #f0f2f5;
+            height: 32px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+            font-size: 14px;
+            color: #65676b;
+        }
+
+        /* Navigation Tabs */
+        .app-tabs {
+            display: flex;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 14px;
+            font-weight: bold;
+            color: #65676b;
+            cursor: pointer;
+        }
+        .tab.active {
+            color: #1877f2;
+            border-bottom: 3px solid #1877f2;
+        }
+
+        /* Content Area */
+        .app-content {
+            flex: 1;
+            overflow-y: auto;
+            background: #f0f2f5;
+        }
+        .view-section {
+            display: none;
+        }
+        .view-section.active {
+            display: block;
+        }
+
+        /* --- LOCAL IMAGE DIV CLASSES --- */
+        /* Helper rule to make divs behave like images */
+        .bg-img {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #ccd0d5; /* Fallback color while loading */
+        }
+
+        /* Specific classes linked to your local files */
+        .img-cover { background-image: url('cover.jpg'); height: 180px; width: 100%; }
+        .img-avatar { background-image: url('photo.jpg'); width: 110px; height: 110px; border-radius: 50%; border: 4px solid #ffffff; }
+        .img-post-avatar { background-image: url('photo.jpg'); width: 36px; height: 36px; border-radius: 50%; }
+        
+        /* Post Assets */
+        .img-h1 { background-image: url('h1.jpg'); width: 100%; height: 210px; }
+        .img-h2 { background-image: url('h2.jpg'); width: 100%; height: 210px; }
+        .img-h3 { background-image: url('h3.jpg'); width: 100%; height: 210px; }
+        .img-h4 { background-image: url('h4.jpg'); width: 100%; height: 210px; }
+        
+        /* Ad Assets */
+        .img-l1 { background-image: url('l1.jpg'); width: 100%; height: 210px; }
+        .img-l2 { background-image: url('l2.jpg'); width: 100%; height: 210px; }
+        
+        /* Mini avatars inside the feed view */
+        .img-feed-h2-avatar { background-image: url('h2.jpg'); width: 36px; height: 36px; border-radius: 50%; }
+        .img-feed-h4-avatar { background-image: url('h4.jpg'); width: 36px; height: 36px; border-radius: 50%; }
+        .img-feed-l1-avatar { background-image: url('l1.jpg'); width: 36px; height: 36px; border-radius: 50%; }
+        .img-feed-l2-avatar { background-image: url('l2.jpg'); width: 36px; height: 36px; border-radius: 50%; }
+
+        /* Profile Layout Details */
+        .avatar-container {
+            margin-top: -60px;
+            padding: 0 15px;
+        }
+        .profile-details {
+            padding: 15px;
+            background: #ffffff;
+        }
+        .profile-name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .profile-handle {
+            font-size: 14px;
+            color: #65676b;
+            margin-bottom: 8px;
+        }
+        .profile-bio {
+            font-size: 13px;
+            background: #f0f2f5;
+            padding: 8px;
+            border-radius: 6px;
+            line-height: 1.4;
+        }
+
+        /* Action Buttons */
+        .action-strip {
+            display: flex;
+            gap: 8px;
+            padding: 12px 15px;
+            background: #ffffff;
+            border-bottom: 8px solid #f0f2f5;
+        }
+        .btn {
+            flex: 1;
+            height: 36px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-blue { background: #1877f2; color: white; }
+        .btn-gray { background: #e4e6eb; color: black; }
+
+        /* About Info Card */
+        .info-card {
+            background: #ffffff;
+            padding: 15px;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-bottom: 8px solid #f0f2f5;
+        }
+
+        /* Post Layout */
+        .post-card {
+            background: #ffffff;
+            padding: 12px 0;
+            margin-bottom: 8px;
+        }
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 12px 10px 12px;
+        }
+        .post-user-info {
+            font-size: 14px;
+        }
+        .post-time {
+            font-size: 11px;
+            color: #65676b;
+            display: block;
+        }
+        .post-text {
+            font-size: 14px;
+            padding: 0 12px 10px 12px;
+            line-height: 1.4;
+        }
+        
+        /* Sponsored Ad badge styling */
+        .ad-badge {
+            background: #f0f2f5;
+            color: #424242;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-left: 6px;
+        }
+        
+        [contenteditable="true"]:hover {
+            outline: 2px dashed #1877f2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-shell">
+        <div class="status-bar">
+            <span contenteditable="true">11:02 PM</span>
+            <span>📶 🔋 98%</span>
+        </div>
+        
+        <div class="fb-header">
+            <div style="font-size: 20px; font-weight: bold; cursor: pointer;">←</div>
+            <div class="search-box" contenteditable="true">Search "how to make money online"</div>
+        </div>
+
+        <div class="app-tabs">
+            <div id="tab-profile" class="tab active" onclick="switchTab('profile')">Profile</div>
+            <div id="tab-feed" class="tab" onclick="switchTab('feed')">For You Feed</div>
+        </div>
+        
+        <div class="app-content">
+            
+            <div id="view-profile" class="view-section active">
+                <div class="bg-img img-cover"></div>
+                
+                <div class="avatar-container">
+                    <div class="bg-img img-avatar"></div>
+                </div>
+                
+                <div class="profile-details">
+                    <div class="profile-name" contenteditable="true">Hamza Esports</div>
+                    <div class="profile-handle" contenteditable="true">Competitive Gamer</div>
+                    <div class="profile-bio" contenteditable="true">👑 Grinding to the top. Esports player. I love high frames and big wins. Future millionaire. ⚡🚀</div>
+                </div>
+
+                <div class="action-strip">
+                    <div class="btn btn-blue" contenteditable="true">+ Add to Story</div>
+                    <div class="btn btn-gray" contenteditable="true">Edit Profile</div>
+                </div>
+
+                <div class="info-card">
+                    <div contenteditable="true">📍 Lives in <b>Faisalabad, Pakistan</b></div>
+                    <div contenteditable="true" style="color: #0077b2;">🎮 Member of <b>Pakistan Esports Association</b></div>
+                    <div contenteditable="true">👥 Joined: <b>PC Builders Community PK</b></div>
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="bg-img img-post-avatar"></div>
+                        <div class="post-user-info">
+                            <strong contenteditable="true">Hamza Esports</strong>
+                            <span class="post-time" contenteditable="true">1 hr ago · Faisalabad · 🌍</span>
+                        </div>
+
+                    </div>
+
+                    <p class="post-text" contenteditable="true">Took 1st place in the gaming tournament tonight! Team was awesome. Next up: Nationals. 🏆 #Gamer #Win</p>
+                    <div class="bg-img img-h2"></div>
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="bg-img img-post-avatar"></div>
+                        <div class="post-user-info">
+                            <strong contenteditable="true">Hamza Esports</strong>
+                            <span class="post-time" contenteditable="true">Yesterday at 4:15 PM · 🌍</span>
+                        </div>
+                    </div>
+                    <p class="post-text" contenteditable="true">Got a new gaming headset today! Sounds amazing, zero lag. Ready for rank matches tonight. 🎮👇</p>
+                <img src="./h1.jpg" alt="Post 1">
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="bg-img img-post-avatar"></div>
+                        <div class="post-user-info">
+                            <strong contenteditable="true">Hamza Esports</strong>
+                            <span class="post-time" contenteditable="true">3 days ago · 🌍</span>
+                        </div>
+                    </div>
+                    <p class="post-text" contenteditable="true">Check out this full squad wipe from our match last night. GG!</p>
+                    <div class="bg-img img-h3"></div>
+                </div>
+            </div>
+
+            <div id="view-feed" class="view-section">
+                
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="bg-img img-feed-h2-avatar"></div>
+                        <div class="post-user-info">
+                            <strong contenteditable="true">Millionaire Lifestyle</strong>
+                            <span class="post-time" contenteditable="true">Suggested Video</span>
+                        </div>
+                    </div>
+                    <p class="post-text" contenteditable="true">Inside the garage of a 21-year-old business owner. Hard work pays off early. Start making money online today. 💼🏎️ #Goals</p>
+                    <div class="bg-img img-h2"></div>
+                </div>
+
+                <div class="post-card" style="background: #fbfcfe; border: 1px solid #ced4da;">
+                    <div class="post-header">
+                        <div class="bg-img img-feed-l1-avatar"></div>
+                        <div class="post-user-info">
+                            <div style="display: flex; align-items: center;">
+                                <strong contenteditable="true">ASUS Pakistan</strong>
+                                <span class="ad-badge">Sponsored</span>
+                            </div>
+                            <span class="post-time" contenteditable="true">Available in Faisalabad</span>
+                        </div>
+                    </div>
+                    <p class="post-text" contenteditable="true">🚀 Get the new ROG Strix laptop. Fast screen and awesome performance. Buy now with easy monthly installments!</p>
+                    <div class="bg-img img-l1"></div>
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="bg-img img-feed-h4-avatar"></div>
+                        <div class="post-user-info">
+                            <strong contenteditable="true">Football Legends</strong>
+                            <span class="post-time" contenteditable="true">Recommended Post</span>
+                        </div>
+                    </div>
+                    <p class="post-text" contenteditable="true">Unbelievable counter-attack goal during the final match last night. Total perfection. ⚽🌟</p>
+                    <div class="bg-img img-h4"></div>
+                </div>
+
+                <div class="post-card" style="background: #fbfcfe; border: 1px solid #ced4da;">
+                    <div class="post-header">
+                        <div class="bg-img img-feed-l2-avatar"></div>
+                        <div class="post-user-info">
+                            <div style="display: flex; align-items: center;">
+                                <strong contenteditable="true">X-Fuel Energy</strong>
+                                <span class="ad-badge">Sponsored</span>
+                            </div>
+                            <span class="post-time" contenteditable="true">Esports Performance</span>
+                        </div>
+                    </div>
+                    <p class="post-text" contenteditable="true">🔋 Outlast the competition. Zero sugar energy drink made for gamers during long rank matches. Order online today! 🥤💥</p>
+                    <div class="bg-img img-l2"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function switchTab(viewName) {
+            document.getElementById('view-profile').classList.remove('active');
+            document.getElementById('view-feed').classList.remove('active');
+            document.getElementById('tab-profile').classList.remove('active');
+            document.getElementById('tab-feed').classList.remove('active');
+
+            if(viewName === 'profile') {
+                document.getElementById('view-profile').classList.add('active');
+                document.getElementById('tab-profile').classList.add('active');
+            } else {
+                document.getElementById('view-feed').classList.add('active');
+                document.getElementById('tab-feed').classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
