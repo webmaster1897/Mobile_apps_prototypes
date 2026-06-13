@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Mobile Wireframe</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;background:#1e222b;padding:10px;display:flex;justify-content:center;align-items:center;min-height:100vh}
+
+/* Responsive Shell Layout adjustments */
+.phone-shell{width:100%;max-width:390px;height:125vh;max-height:1200px;background:#fff;border:12px solid #2f3542;border-radius:40px;overflow:hidden;display:flex;flex-direction:column;position:relative;box-shadow:0 12px 30px rgba(0,0,0,0.4)}
+
+@media (max-width: 450px) {
+  body { padding: 0; }
+  .phone-shell { max-width: 100%; height: 100vh; max-height: 100%; border: none; border-radius: 0; }
+}
+
+.status-bar{height:30px;padding:0 20px;display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600;background:#fff;user-select:none;flex-shrink:0}
+
+/* Headers */
+.ig-header{display:flex;justify-content:space-between;align-items:center;padding:10px 15px;border-bottom:1px solid #dbdbdb;background:#fff;flex-shrink:0}
+.ig-logo{font-size:20px;font-weight:bold;font-style:italic;font-family:'Georgia', serif}
+.header-icons{display:flex;gap:15px;font-size:18px;cursor:pointer}
+
+/* Explore / For You Search Bar Header */
+.explore-header{display:none;padding:10px 15px;background:#fff;border-bottom:1px solid #dbdbdb;flex-shrink:0}
+.explore-header.active{display:block}
+.search-bar{width:100%;background:#efefef;border:none;padding:8px 12px 8px 35px;border-radius:10px;font-size:14px;outline:none}
+.search-wrapper{position:relative}
+.search-icon{position:absolute;left:12px;top:8px;color:#737373;font-size:14px}
+
+/* Content Area */
+.app-content{flex:1;overflow-y:auto;background:#fff;padding-bottom:60px}
+.view-section{display:none}
+.view-section.active{display:block}
+
+/* Profile View Styling */
+.profile-top{padding:15px;display:flex;align-items:center;gap:20px}
+.avatar-container{position:relative}
+.avatar-image{width:76px;height:76px;border-radius:50%;border:1px solid #dbdbdb;object-fit:cover;display:block;padding:2px;background:#fff}
+.profile-stats{display:flex;gap:10px;flex:1;justify-content:space-around;text-align:center;font-size:13px}
+.stat-num{font-weight:bold;font-size:15px}
+.stat-label{font-size:11px;color:#737373}
+.profile-bio-section{padding:0 15px 15px;font-size:13px;line-height:1.4}
+.profile-name{font-weight:bold}
+.profile-category{color:#737373;font-size:12px;margin:2px 0}
+.action-strip{display:flex;gap:6px;padding:0 15px 15px}
+.btn{flex:1;padding:7px;text-align:center;border-radius:8px;font-weight:600;font-size:13px;cursor:pointer;background:#efefef;color:#000;user-select:none}
+.btn:hover{background:#dbdbdb}
+
+/* Tab Switcher inside Profile */
+.profile-tabs{display:flex;border-top:1px solid #dbdbdb;border-bottom:1px solid #dbdbdb}
+.profile-tab{flex:1;text-align:center;padding:12px;font-size:14px;cursor:pointer;color:#737373;font-weight:500}
+.profile-tab.active{color:#000;border-bottom:2px solid #000;font-weight:600}
+
+/* Instagram Post Grid */
+.photo-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:3px;padding:3px}
+.grid-square{width:100%;aspect-ratio:1/1;background:#efefef;position:relative;cursor:pointer;overflow:hidden}
+.grid-square img{width:100%;height:100%;object-fit:cover}
+.grid-icon{position:absolute;top:8px;right:8px;color:#fff;font-size:14px;text-shadow:0 0 4px rgba(0,0,0,0.5)}
+
+/* Explore Big Feature Tile Layout */
+.explore-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:3px;padding:3px}
+.big-tile{grid-column:span 2;grid-row:span 2}
+
+/* Home Feed View Styling */
+.post-card{border-bottom:1px solid #dbdbdb;padding-bottom:15px;background:#fff}
+.post-header{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;gap:10px}
+.small-avatar{width:32px;height:32px;border-radius:50%;object-fit:cover}
+.post-user-info{flex:1;margin-left:8px}
+.user-name{font-size:13px;font-weight:600}
+.post-location{font-size:11px;color:#737373}
+.post-image-wrap{width:100%;aspect-ratio:1/1;background:#efefef;overflow:hidden}
+.post-image{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Interactions & Captions */
+.post-actions{display:flex;gap:15px;padding:10px 12px;font-size:20px;align-items:center;position:relative}
+.action-icon{cursor:pointer;transition:transform 0.1s}
+.action-icon:hover{transform:scale(1.1)}
+.like-counter{font-size:13px;font-weight:600;padding:0 12px 5px}
+.caption-box{padding:0 12px;font-size:13px;line-height:1.4}
+.caption-user{font-weight:600;margin-right:5px}
+.post-time{font-size:11px;color:#737373;text-transform:uppercase;margin-top:6px}
+
+/* Inline Reaction Engine Customization */
+.heart-indicator{color:#ff3040;font-weight:bold;margin-right:4px;display:none}
+.heart-indicator.active{display:inline}
+.emoji-picker{display:none;position:absolute;bottom:40px;left:12px;background:#fff;border-radius:20px;padding:6px 10px;box-shadow:0 4px 12px rgba(0,0,0,0.15);gap:10px;z-index:10;border:1px solid #dbdbdb}
+.post-actions:hover .emoji-picker{display:flex}
+.emoji-picker span{cursor:pointer;font-size:18px;transition:transform 0.1s}
+.emoji-picker span:hover{transform:scale(1.3)}
+
+/* Persistent Sticky Bottom Navigation Bar */
+.bottom-nav{position:absolute;bottom:0;left:0;width:100%;height:55px;background:#fff;border-top:1px solid #dbdbdb;display:flex;justify-content:space-around;align-items:center;font-size:22px;z-index:20}
+.nav-item{cursor:pointer;color:#000;opacity:0.4;transition:opacity 0.2s}
+.nav-item.active{opacity:1}
+</style>
+</head>
+<body>
+
+<div class="phone-shell">
+  <!-- Status Bar -->
+  <div class="status-bar"><span>2:44 PM</span><span>📶 🔋 100%</span></div>
+
+  <!-- Main Top Bar -->
+  <div id="main-header" class="ig-header">
+    <div class="ig-logo">Instagram</div>
+    <div class="header-icons">
+      <span>❤️</span>
+      <span>📥</span>
+    </div>
+  </div>
+
+  <!-- Alternative Explore Top Bar -->
+  <div id="search-header" class="explore-header">
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-bar" placeholder="Search accounts, tags, or places...">
+    </div>
+  </div>
+
+  <!-- Scrollable App Content -->
+  <div class="app-content">
+
+    <!-- 1. HOME FEED VIEW SECTION -->
+    <div id="view-home" class="view-section">
+      <!-- Post 0 -->
+      <div class="post-card">
+        <div class="post-header">
+          <img src="avatar.jpg" class="small-avatar" alt="User">
+          <div class="post-user-info">
+            <div class="user-name">thegastroathlete</div>
+          </div>
+          <div style="cursor:pointer; font-weight:bold;">•••</div>
+        </div>
+        <div class="post-image-wrap">
+          <img src="muscle.jpg" class="post-image" alt="Muscular System">
+        </div>
+        <div class="post-actions">
+          <div class="action-icon" onclick="toggleLike('like-0', 'count-0')"><span id="like-0" class="heart-indicator">❤️</span>🤍</div>
+          <div class="action-icon">💬</div>
+          <div class="action-icon">✈️</div>
+        </div>
+        <div class="like-counter"><span id="count-0">12</span> likes</div>
+        <div class="caption-box">
+          <p><span class="caption-user">thegastroathlete</span><strong>Muscular system</strong><br><br>Proteins build muscles and muscles build you.</p>
+          <div class="post-time">Today</div>
+        </div>
+      </div>
+
+      <!-- Post 1 -->
+      <div class="post-card">
+        <div class="post-header">
+          <img src="avatar.jpg" class="small-avatar" alt="User">
+          <div class="post-user-info">
+            <div class="user-name">thegastroathlete</div>
+            <div class="post-location">Iron Foundry Gym</div>
+          </div>
+          <div style="cursor:pointer; font-weight:bold;">•••</div>
+        </div>
+        <div class="post-image-wrap">
+          <img src="burger.jpg" class="post-image" alt="Burger">
+        </div>
+        <div class="post-actions">
+          <div class="action-icon" onclick="toggleLike('like-1', 'count-1')"><span id="like-1" class="heart-indicator">❤️</span>🤍</div>
+          <div class="action-icon">💬</div>
+          <div class="action-icon">✈️</div>
+          <div class="emoji-picker">
+            <span onclick="setReaction('like-1', '👍')">👍</span>
+            <span onclick="setReaction('like-1', '🔥')">🔥</span>
+            <span onclick="setReaction('like-1', '👏')">👏</span>
+          </div>
+        </div>
+        <div class="like-counter"><span id="count-1">42</span> likes</div>
+        <div class="caption-box">
+          <p><span class="caption-user">thegastroathlete</span><strong>Fueling the Machine 🍔💪</strong><br><br>Friday nights are for local burgers. Saturday mornings are for heavy leg workouts. As a science teacher, I tell my students that our bodies need energy to move. I don’t feel bad about eating a burger. Instead, I use those calories to lift heavier weights the next day. Don't look at food as a punishment. Look at it as energy for your muscles!</p>
+          <div class="post-time">1 hour ago</div>
+        </div>
+      </div>
+
+      <!-- Post 2 -->
+      <div class="post-card">
+        <div class="post-header">
+          <img src="avatar.jpg" class="small-avatar" alt="User">
+          <div class="post-user-info">
+            <div class="user-name">thegastroathlete</div>
+            <div class="post-location">Downtown Ramen Bar</div>
+          </div>
+          <div style="cursor:pointer; font-weight:bold;">•••</div>
+        </div>
+        <div class="post-image-wrap">
+          <img src="ramen.jpg" class="post-image" alt="Ramen">
+        </div>
+        <div class="post-actions">
+          <div class="action-icon" onclick="toggleLike('like-2', 'count-2')"><span id="like-2" class="heart-indicator">❤️</span>🤍</div>
+          <div class="action-icon">💬</div>
+          <div class="action-icon">✈️</div>
+        </div>
+        <div class="like-counter"><span id="count-2">89</span> likes</div>
+        <div class="caption-box">
+          <p><span class="caption-user">thegastroathlete</span><strong>My New Favorite Ramen Spot! 🍜🥢</strong><br><br>I finally had some free time after a long week of grading school exams. I found this tiny ramen place hidden downtown. The broth took 12 hours to cook, and you can really taste the effort. If you love spicy food, you need to try this place. It gets a 10/10 from me. Life is too short to eat boring food.</p>
+          <div class="post-time">Yesterday</div>
+        </div>
+      </div>
+
+      <!-- Post 3 -->
+      <div class="post-card">
+        <div class="post-header">
+          <img src="avatar.jpg" class="small-avatar" alt="User">
+          <div class="post-user-info">
+            <div class="user-name">thegastroathlete</div>
+            <div class="post-location">Central Park Greenery</div>
+          </div>
+          <div style="cursor:pointer; font-weight:bold;">•••</div>
+        </div>
+        <div class="post-image-wrap">
+          <img src="park.jpg" class="post-image" alt="Park">
+        </div>
+        <div class="post-actions">
+          <div class="action-icon" onclick="toggleLike('like-3', 'count-3')"><span id="like-3" class="heart-indicator">❤️</span>🤍</div>
+          <div class="action-icon">💬</div>
+          <div class="action-icon">✈️</div>
+        </div>
+        <div class="like-counter"><span id="count-3">56</span> likes</div>
+        <div class="caption-box">
+          <p><span class="caption-user">thegastroathlete</span><strong>Simple Saturday Mornings ☀️☕</strong><br><br>I woke up early today, did a quick 3-mile run in the park, and stopped by the local bakery on my way home. I love teaching, but the school week can be very stressful. Mornings like this help me relax and reset my mind. Good coffee, fresh air, and a little sweet treat. Balance is the most important part of life.</p>
+          <div class="post-time">3 days ago</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. FOR YOU / EXPLORE VIEW SECTION -->
+    <div id="view-explore" class="view-section">
+      <div class="explore-grid">
+        <div class="grid-square" onclick="switchTab('home')"><img src="fit1.jpg"><span class="grid-icon">🎬</span></div>
+        <div class="grid-square" onclick="switchTab('home')"><img src="park.jpg"></div>
+        <div class="grid-square big-tile" onclick="switchTab('home')"><img src="burger.jpg"><span class="grid-icon">🔥</span></div>
+        <div class="grid-square" onclick="switchTab('home')"><img src="fit2.jpg"></div>
+        <div class="grid-square" onclick="switchTab('home')"><img src="fit3.jpg"></div>
+        <div class="grid-square" onclick="switchTab('home')"><img src="fit4.jpg"></div>
+        <div class="grid-square" onclick="switchTab('home')"><img src="ramen.jpg"></div>
+        <div class="grid-square" onclick="switchTab('home')"><img src="fit5.jpg"></div>
+        <div class="grid-square" onclick="switchTab('home')"><img src="fit6.jpg"></div>
+      </div>
+    </div>
+
+    <!-- 3. PROFILE VIEW SECTION -->
+    <div id="view-profile" class="view-section active">
+      <div class="profile-top">
+        <div class="avatar-container">
+          <img src="avatar.jpg" class="avatar-image" alt="Azan Profile Picture">
+        </div>
+        <div class="profile-stats">
+          <div><div class="stat-num">142</div><div class="stat-label">posts</div></div>
+          <div><div class="stat-num">843</div><div class="stat-label">followers</div></div>
+          <div><div class="stat-num">511</div><div class="stat-label">following</div></div>
+        </div>
+      </div>
+      
+      <div class="profile-bio-section">
+        <div class="profile-name">Azan</div>
+        <div class="profile-category">Education / Science Teacher</div>
+        <div>Lifting weights & finding tasty dishes around the city. 🏋️‍♂️🍔<br>Our bodies run on chemical energy. Let's fuel it well! 👇</div>
+      </div>
+
+      <div class="action-strip">
+        <div class="btn">Edit Profile</div>
+        <div class="btn">Share Profile</div>
+      </div>
+
+      <div class="profile-tabs">
+        <div class="profile-tab active">⣿ Grid</div>
+        <div class="profile-tab">👤 Tagged</div>
+      </div>
+
+      <div class="photo-grid">
+        <div class="grid-square" onclick="switchTab('home')"><img src="burger.jpg"><span class="grid-icon">📌</span></div>
+        <div class="grid-square" onclick="switchTab('home')"><img src="ramen.jpg"><span class="grid-icon">❐</span></div>
+        <div class="grid-square" onclick="switchTab('home')"><img src="park.jpg"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Navigation Bar -->
+  <div class="bottom-nav">
+    <span id="nav-home" class="nav-item" onclick="switchTab('home')">🏠</span>
+    <span id="nav-explore" class="nav-item" onclick="switchTab('explore')">🔍</span>
+    <span class="nav-item">➕</span>
+    <span class="nav-item">🎬</span>
+    <span id="nav-profile" class="nav-item active" onclick="switchTab('profile')">👤</span>
+  </div>
+</div>
+
+<script>
+function switchTab(viewName){
+  document.getElementById('view-home').classList.remove('active');
+  document.getElementById('view-explore').classList.remove('active');
+  document.getElementById('view-profile').classList.remove('active');
+  
+  document.getElementById('main-header').style.display = 'flex';
+  document.getElementById('search-header').classList.remove('active');
+
+  document.getElementById('nav-home').classList.remove('active');
+  document.getElementById('nav-explore').classList.remove('active');
+  document.getElementById('nav-profile').classList.remove('active');
+
+  if(viewName === 'home'){
+    document.getElementById('view-home').classList.add('active');
+    document.getElementById('nav-home').classList.add('active');
+  } else if (viewName === 'explore') {
+    document.getElementById('view-explore').classList.add('active');
+    document.getElementById('nav-explore').classList.add('active');
+    document.getElementById('main-header').style.display = 'none';
+    document.getElementById('search-header').classList.add('active');
+  } else if (viewName === 'profile') {
+    document.getElementById('view-profile').classList.add('active');
+    document.getElementById('nav-profile').classList.add('active');
+  }
+}
+
+function toggleLike(heartId, countId) {
+  var heart = document.getElementById(heartId);
+  var countSpan = document.getElementById(countId);
+  var currentLikes = parseInt(countSpan.innerText);
+  
+  if(heart.classList.contains('active')) {
+    heart.classList.remove('active');
+    countSpan.innerText = currentLikes - 1;
+  } else {
+    heart.classList.add('active');
+    heart.innerText = "❤️";
+    countSpan.innerText = currentLikes + 1;
+  }
+}
+
+function setReaction(id, emoji) {
+  var heart = document.getElementById(id);
+  heart.classList.add('active');
+  heart.innerText = emoji;
+}
+</script>
+</body>
+</html>
