@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Urgent: Daraz Delivery Alert</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f6f6f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .email-container { background: white; width: 100%; max-width: 450px; padding: 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+        
+        /* Gmail Header */
+        .gmail-header { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 15px; font-size: 13px; }
+        .subject { font-size: 18px; margin-bottom: 10px; }
+        .sender-info { color: #555; margin-bottom: 4px; }
+        
+        /* Content */
+        .logo { width: 100px; margin-bottom: 15px; }
+        .lure-box { border: 2px solid #f57224; padding: 15px; border-radius: 5px; text-align: center; }
+        .btn { display: block; background: #f57224; color: white; padding: 12px; text-decoration: none; border-radius: 4px; margin-top: 15px; font-weight: bold; }
+        
+        /* Payment Page Styles */
+        .payment-container { display: none; text-align: center; }
+        .payment-box { border: 2px solid #00a551; padding: 20px; margin-top: 20px; border-radius: 5px; }
+        input { width: 90%; padding: 10px; margin: 5px 0; border: 1px solid #ccc; }
+        .pay-btn { width: 95%; padding: 10px; background: #00a551; color: white; border: none; cursor: pointer; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+
+
+    <!-- Step 1: Lure -->
+    <div id="lure-page">
+<div class="email-container" id="main-container">
+    <!-- Gmail Header -->
+    <div class="gmail-header">
+        <div class="subject">Action Required: Your Daraz delivery is on hold</div>
+        <div class="sender-info"><b>From:</b> Daraz Support &lt;daraz-dummy-99@gmail.com&gt;</div>
+        <div class="sender-info"><b>To:</b> &lt;witscomplab@gmail.com&gt;</div>
+        <div class="sender-info"><b>Date:</b> Sunday, June 14, 2026, 4:20 PM</div>
+   
+</div>        <img src="daraz.png" alt="Daraz Logo" class="logo">
+        <div class="lure-box">
+            <p>Dear Customer, your delivery is on hold.</p>
+            <p><strong>Fee: Rs. 99</strong></p>
+            <!-- Tooltip showing suspicious URL -->
+            <a href="#" class="btn" 
+               title="http://daraz-dummy/secure-verify.net/payment?id=9489600" 
+               onclick="document.getElementById('lure-page').style.display='none'; document.getElementById('payment-container').style.display='block'; return false;">
+               Pay Delivery Fee
+            </a>
+        </div>
+    </div>
+
+ </div>
+
+
+
+  <style>
+   
+        
+        /* Suspicious URL Box */
+        .url-box { border: 1px solid #ff4d4d; background: #fff0f0; padding: 10px; margin-bottom: 20px; font-size: 12px; color: #cc0000; word-break: break-all; border-radius: 4px; }
+        
+        /* Search Bar & Inputs */
+        .search-bar { width: 100%; padding: 12px; border: 2px solid #00a551; border-radius: 4px; margin-bottom: 20px; box-sizing: border-box; }
+        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .pay-btn { width: 100%; padding: 12px; background: #00a551; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+    </style>
+
+
+
+
+    <!-- Step 2: Fake Payment Portal -->
+           
+    
+<style>
+.google-search-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.google-search-bar {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    padding: 10px 15px;
+    border: 1px solid #dcdcdc;
+    border-radius: 25px;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.google-search-bar input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 14px;
+    background: transparent;
+}
+
+.search-icon {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #777;
+}
+</style>
+
+<div id="payment-container" class="payment-container">
+    <!-- Rectangular box showing the suspicious link -->
+ <!-- URL Display Search Bar (safe/demo version) -->
+<div class="google-search-wrapper">
+    <div class="google-search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" value="http://daraz-dummy/verifypage" readonly>
+    </div>
+</div>
+
+    <!-- Rectangular search bar used to trick user into "searching" for their order -->
+    <input type="text" class="search-bar" placeholder="Enter Order ID to verify...">
+
+    <h3 style="color: #00a551;">Easypaisa Secure Payment</h3>
+    <p style="font-size: 14px; color: #555;">Complete your Rs. 99 payment:</p>
+    
+    <form onsubmit="alert('Data Harvested!'); return false;">
+        <input type="text" placeholder="Phone Number" required>
+        <input type="password" placeholder="4-Digit PIN" required>
+        <button type="submit" class="pay-btn">Complete Payment</button>
+    </form>
+</div>
+
+
+
+
+
+</body>
+</html>
