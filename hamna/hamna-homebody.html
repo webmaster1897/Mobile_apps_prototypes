@@ -325,6 +325,7 @@ border:1px solid #e4e6eb;
 }
 </style>
 </head>
+
 <body>
 
 <div class="phone">
@@ -338,81 +339,113 @@ border:1px solid #e4e6eb;
   </div>
 
   <div class="fb-tabs">
-    <div id="tab-home" class="fb-tab active" onclick="switchView('home')">🏠 For You</div>
-    <div id="tab-profile" class="fb-tab" onclick="switchView('profile')">👤 Profile</div>
+    <div id="tab-home" class="fb-tab active" onclick="switchView('home')">
+      🏠 For You
+    </div>
+    <div id="tab-profile" class="fb-tab" onclick="switchView('profile')">
+      👤 Profile
+    </div>
   </div>
 
   <div class="app-content">
 
+    <!-- HOME VIEW -->
     <div id="view-home" class="view-section active">
-      
-      
 
- 
-<div id="view-home" class="view-section active">
-  
+      <!-- AD 1 -->
+      <div class="post">
+        <div class="post-header">
+          <img class="post-avatar"
+               src="https://randomuser.me/api/portraits/women/32.jpg">
+          <div class="post-meta">
+            <div class="post-name">StyleHub Store</div>
+            <div class="post-time">Sponsored · 🌐</div>
+          </div>
+        </div>
 
+        <div class="post-text">
+          New seasonal dresses just dropped 👗✨ Limited offer!
+        </div>
 
- 
-  <!-- AD 1 -->
-  <div class="post">
-    <div class="post-header">
-      <img class="post-avatar" src="https://randomuser.me/api/portraits/women/32.jpg" alt="Ad Avatar">
-      <div class="post-meta">
-        <div class="post-name">StyleHub Store</div>
-        <div class="post-time">Sponsored · 🌐</div>
+        <img class="post-img"
+             src="https://images.unsplash.com/photo-1520975916090-3105956dac38?w=500">
+
+        <div class="actions">
+          <div class="action-item">👍 Like</div>
+          <div class="action-item">💬 Comment</div>
+          <div class="action-item">↗️ Share</div>
+        </div>
       </div>
-    </div>
-    <div class="post-text">New seasonal dresses just dropped 👗✨ Limited offer!</div>
-    <img class="post-img" src="https://images.unsplash.com/photo-1520975916090-3105956dac38?w=500" alt="Ad Fashion">
-  </div>
 
-  <!-- AD 2 -->
-  <div class="post">
-    <div class="post-header">
-      <img class="post-avatar" src="https://randomuser.me/api/portraits/men/45.jpg" alt="Ad Avatar">
-      <div class="post-meta">
-        <div class="post-name">BookNest App</div>
-        <div class="post-time">Sponsored · 🌐</div>
+      <!-- AD 2 -->
+      <div class="post">
+        <div class="post-header">
+          <img class="post-avatar"
+               src="https://randomuser.me/api/portraits/men/45.jpg">
+          <div class="post-meta">
+            <div class="post-name">BookNest App</div>
+            <div class="post-time">Sponsored · 🌐</div>
+          </div>
+        </div>
+
+        <div class="post-text">
+          Read 10,000+ books anytime 📚 Start your free trial today.
+        </div>
+
+        <img class="post-img"
+             src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=500">
+
+        <div class="actions">
+          <div class="action-item">👍 Like</div>
+          <div class="action-item">💬 Comment</div>
+          <div class="action-item">↗️ Share</div>
+        </div>
       </div>
-    </div>
-    <div class="post-text">Read 10,000+ books anytime 📚 Start your free trial today.</div>
-    <img class="post-img" src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=500" alt="Book Ad">
-  </div>
 
-  <!-- AD 3 -->
-  <div class="post">
-    <div class="post-header">
-      <img class="post-avatar" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ad Avatar">
-      <div class="post-meta">
-        <div class="post-name">NatureGlow Travel</div>
-        <div class="post-time">Sponsored · 🌐</div>
+      <!-- AD 3 -->
+      <div class="post">
+        <div class="post-header">
+          <img class="post-avatar"
+               src="https://randomuser.me/api/portraits/women/68.jpg">
+          <div class="post-meta">
+            <div class="post-name">NatureGlow Travel</div>
+            <div class="post-time">Sponsored · 🌐</div>
+          </div>
+        </div>
+
+        <div class="post-text">
+          Explore peaceful nature escapes 🌿 Book your getaway now.
+        </div>
+
+        <img class="post-img"
+             src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500">
+
+        <div class="actions">
+          <div class="action-item">👍 Like</div>
+          <div class="action-item">💬 Comment</div>
+          <div class="action-item">↗️ Share</div>
+        </div>
       </div>
-    </div>
-    <div class="post-text">Explore peaceful nature escapes 🌿 Book your getaway now.</div>
-    <img class="post-img" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500" alt="Travel Ad">
-  </div>
-
-</div>
-
-
-
 
     </div>
 
+    <!-- PROFILE VIEW -->
     <div id="view-profile" class="view-section">
-      
+
       <div class="profile-container">
+
         <div class="cover-wrapper">
-          <img class="cover" src="cover.jpg" alt="Cover background">
+          <img class="cover" src="cover.jpg">
           <div class="avatar-wrapper">
-            <img class="avatar" src="avatar.jpg" alt="Profile picture">
+            <img class="avatar" src="avatar.jpg">
           </div>
         </div>
 
         <div class="profile-meta-block">
           <div class="name">Hamna</div>
-          <div class="sub-title">Home Maker • Lifestyle Creator</div>
+          <div class="sub-title">
+            Home Maker • Lifestyle Creator
+          </div>
         </div>
 
         <div class="bio">
@@ -425,44 +458,30 @@ border:1px solid #e4e6eb;
           <div class="btn">✉️ Message</div>
           <div class="btn">•••</div>
         </div>
+
       </div>
 
-
-
-
-          </div>
-        </div>
-        <div class="post-text">New Book Store ARound the corner 🌿</div>
-        <img class="post-img" src="book.jpg" alt="Nature Post">
-        <div class="post-stats-preview">
-          <span>👍 ❤️ 89</span>
-          <span>12 comments</span>
-        </div>
-        <div class="actions">
-          <div class="action-item">👍 Like</div>
-          <div class="action-item">💬 Comment</div>
-          <div class="action-item">↗️ Share</div>
-        </div>
-      </div>
-
-
-
-
-
+      <!-- POST 1 -->
       <div class="post">
         <div class="post-header">
-          <img class="post-avatar" src="avatar.jpg" alt="Avatar">
+          <img class="post-avatar" src="avatar.jpg">
           <div class="post-meta">
             <div class="post-name">Hamna</div>
             <div class="post-time">Yesterday · 🌐</div>
           </div>
         </div>
-        <div class="post-text">Recipe for apple pie</div>
-        <img class="post-img" src="apple.jpg" alt="Nature Post">
+
+        <div class="post-text">
+          New Book Store Around the corner 🌿
+        </div>
+
+        <img class="post-img" src="book.jpg">
+
         <div class="post-stats-preview">
           <span>👍 ❤️ 89</span>
           <span>12 comments</span>
         </div>
+
         <div class="actions">
           <div class="action-item">👍 Like</div>
           <div class="action-item">💬 Comment</div>
@@ -470,25 +489,27 @@ border:1px solid #e4e6eb;
         </div>
       </div>
 
-
-
-
-
-
+      <!-- POST 2 -->
       <div class="post">
         <div class="post-header">
-          <img class="post-avatar" src="avatar.jpg" alt="Avatar">
+          <img class="post-avatar" src="avatar.jpg">
           <div class="post-meta">
             <div class="post-name">Hamna</div>
             <div class="post-time">Yesterday · 🌐</div>
           </div>
         </div>
-        <div class="post-text">Peaceful nature walk 🌿</div>
-        <img class="post-img" src="nature.jpg" alt="Nature Post">
+
+        <div class="post-text">
+          Recipe for apple pie 🍎🥧
+        </div>
+
+        <img class="post-img" src="apple.jpg">
+
         <div class="post-stats-preview">
           <span>👍 ❤️ 89</span>
           <span>12 comments</span>
         </div>
+
         <div class="actions">
           <div class="action-item">👍 Like</div>
           <div class="action-item">💬 Comment</div>
@@ -496,54 +517,87 @@ border:1px solid #e4e6eb;
         </div>
       </div>
 
-
-
-
-
+      <!-- POST 3 -->
       <div class="post">
         <div class="post-header">
-          <img class="post-avatar" src="avatar.jpg" alt="Avatar">
+          <img class="post-avatar" src="avatar.jpg">
           <div class="post-meta">
             <div class="post-name">Hamna</div>
             <div class="post-time">Yesterday · 🌐</div>
           </div>
         </div>
-        <div class="post-text">Kitchn tour🥣🍽️🍽️</div>
-        <img class="post-img" src="Kitchen.jpg" alt="Nature Post">
+
+        <div class="post-text">
+          Peaceful nature walk 🌿
+        </div>
+
+        <img class="post-img" src="nature.jpg">
+
         <div class="post-stats-preview">
           <span>👍 ❤️ 89</span>
           <span>12 comments</span>
         </div>
+
         <div class="actions">
           <div class="action-item">👍 Like</div>
           <div class="action-item">💬 Comment</div>
           <div class="action-item">↗️ Share</div>
         </div>
       </div>
+
+      <!-- POST 4 -->
+      <div class="post">
+        <div class="post-header">
+          <img class="post-avatar" src="avatar.jpg">
+          <div class="post-meta">
+            <div class="post-name">Hamna</div>
+            <div class="post-time">Yesterday · 🌐</div>
+          </div>
+        </div>
+
+        <div class="post-text">
+          Kitchen tour 🥣🍽️
+        </div>
+
+        <img class="post-img" src="Kitchen.jpg">
+
+        <div class="post-stats-preview">
+          <span>👍 ❤️ 89</span>
+          <span>12 comments</span>
+        </div>
+
+        <div class="actions">
+          <div class="action-item">👍 Like</div>
+          <div class="action-item">💬 Comment</div>
+          <div class="action-item">↗️ Share</div>
+        </div>
+      </div>
+
     </div>
 
   </div>
+
 </div>
 
 <script>
 function switchView(viewName) {
-  // Clear layout views out
   document.getElementById('view-home').classList.remove('active');
   document.getElementById('view-profile').classList.remove('active');
-  
-  // Untoggle active class highlights from top navigational indicators
+
   document.getElementById('tab-home').classList.remove('active');
   document.getElementById('tab-profile').classList.remove('active');
 
-  // Activate chosen context view targeting id selectors
-  if(viewName === 'home') {
+  if (viewName === 'home') {
     document.getElementById('view-home').classList.add('active');
     document.getElementById('tab-home').classList.add('active');
-  } else if(viewName === 'profile') {
+  } else {
     document.getElementById('view-profile').classList.add('active');
     document.getElementById('tab-profile').classList.add('active');
   }
 }
 </script>
+
 </body>
+
+
 </html>
